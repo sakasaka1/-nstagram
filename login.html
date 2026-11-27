@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Instagram</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <meta name="robots" content="noimageindex, noarchive" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: #fafafa;
+      color: #262626;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .root-container {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 0;
+    }
+
+    .auth-column {
+      width: 350px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-box {
+      background-color: #ffffff;
+      border: 1px solid #dbdbdb;
+      border-radius: 1px;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ig-logo-text {
+      margin: 22px auto 12px auto;
+      font-family: "Pacifico", "Brush Script MT", "Segoe Script", cursive;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 46px;
+      letter-spacing: 0.3px;
+      color: #363636;
+      user-select: none;
+    }
+
+    .form-wrap {
+      margin-top: 24px;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 268px;
+    }
+
+    .ig-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-row {
+      margin: 0 0 6px 0;
+      width: 100%;
+    }
+
+    .input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 36px;
+      background-color: #fafafa;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+    }
+
+    .input-box:focus-within {
+      border-color: #a8a8a8;
+    }
+
+    .ig-input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      color: #262626;
+      font-family: inherit;
+      font-size: 12px;
+      line-height: 18px;
+      padding: 9px 8px 7px 8px;
+      outline: none;
+    }
+
+    .ig-input::placeholder {
+      color: #8e8e8e;
+      font-size: 12px;
+    }
+
+    .btn-row {
+      margin: 8px 0;
+      width: 100%;
+    }
+
+    .ig-submit {
+      width: 100%;
+      height: 30px;
+      padding: 5px 9px;
+      background-color: #0095f6;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 18px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .ig-submit:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .ig-submit:not(:disabled):active {
+      opacity: 0.7;
+    }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 268px;
+      margin: 10px 0 18px 0;
+    }
+
+    .or-line {
+      flex: 1;
+      height: 1px;
+      background-color: #dbdbdb;
+    }
+
+    .or-label {
+      margin: 0 18px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 15px;
+      color: #8e8e8e;
+      text-transform: uppercase;
+    }
+
+    .fb-btn-wrap {
+      margin: 8px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .fb-link {
+      color: #385185;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 18px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fb-icon-img {
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .forgot-link {
+      margin-top: 12px;
+      margin-bottom: 4px;
+      font-size: 12px;
+      line-height: 14px;
+      color: #00376b;
+      text-decoration: none;
+    }
+
+    .signup-box {
+      background-color: #ffffff;
+      border: 1px solid #dbdbdb;
+      border-radius: 1px;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .signup-text {
+      margin: 15px;
+      font-size: 14px;
+      line-height: 18px;
+      color: #262626;
+    }
+
+    .signup-link {
+      color: #0095f6;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .app-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-caption {
+      margin: 10px 20px;
+      font-size: 14px;
+      line-height: 18px;
+      color: #262626;
+      text-align: center;
+    }
+
+    .app-badges {
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .app-badges img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .ig-footer {
+      margin-top: 28px;
+      padding: 0 20px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 14px;
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: #8e8e8e;
+      font-size: 12px;
+      line-height: 16px;
+      text-decoration: none;
+    }
+
+    .footer-copy {
+      color: #8e8e8e;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    @media (max-width: 450px) {
+      html, body {
+        background-color: #ffffff;
+      }
+      .root-container {
+        justify-content: flex-start;
+        padding-top: 0;
+      }
+      .auth-column {
+        width: 100%;
+        max-width: 100%;
+      }
+      .card-box,
+      .signup-box {
+        background-color: transparent;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="root-container">
+    <main class="auth-column">
+      <div class="card-box">
+        <div class="ig-logo-text">Instagram</div>
+
+        <div class="form-wrap">
+          <form class="ig-form" id="loginForm">
+            <div class="input-row">
+              <div class="input-box">
+                <input
+                  id="username"
+                  class="ig-input"
+                  type="text"
+                  name="username"
+                  aria-label="Telefon numarası, kullanıcı adı veya e-posta"
+                  placeholder="Telefon numarası, kullanıcı adı veya e-posta"
+                  autocapitalize="off"
+                  autocorrect="off"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-box">
+                <input
+                  id="password"
+                  class="ig-input"
+                  type="password"
+                  name="password"
+                  aria-label="Şifre"
+                  placeholder="Şifre"
+                  autocapitalize="off"
+                  autocorrect="off"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button id="submitBtn" class="ig-submit" type="submit" disabled>Giriş yap</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="or-divider">
+          <div class="or-line"></div>
+          <div class="or-label">VEYA</div>
+          <div class="or-line"></div>
+        </div>
+
+        <div class="fb-btn-wrap">
+          <a class="fb-link" href="https://www.instagram.com/">
+            <img src="1000029717.png" alt="Facebook" class="fb-icon-img" />
+            <span>Facebook ile Giriş Yap</span>
+          </a>
+        </div>
+
+        <a class="forgot-link" href="https://www.instagram.com/accounts/password/reset/">
+          Şifreni mi unuttun?
+        </a>
+      </div>
+
+      <div class="signup-box">
+        <p class="signup-text">
+          Hesabın yok mu?
+          <a class="signup-link" href="https://www.instagram.com/accounts/emailsignup/">Kaydol</a>
+        </p>
+      </div>
+
+      <div class="app-section">
+        <p class="app-caption">Uygulamayı indir.</p>
+        <div class="app-badges">
+          <a href="https://www.instagram.com/">
+            <img src="badge_ios_english-en.png" alt="App Store'dan İndir" />
+          </a>
+          <a href="https://www.instagram.com/">
+            <img src="badge_android_english-en.png" alt="Google Play'den Al" />
+          </a>
+        </div>
+      </div>
+
+      <footer class="ig-footer">
+        <nav class="footer-links">
+          <a href="https://about.instagram.com/">Hakkında</a>
+          <a href="https://help.instagram.com/">Yardım</a>
+          <a href="https://privacycenter.instagram.com/">Gizlilik</a>
+          <a href="https://help.instagram.com/581066165581870">Koşullar</a>
+          <a href="https://www.instagram.com/explore/locations/">Konumlar</a>
+          <a href="https://www.instagram.com/directory/profiles/">Hesaplar</a>
+          <a href="https://www.instagram.com/directory/hashtags/">Etiketler</a>
+        </nav>
+        <div class="footer-copy">© 2026 Instagram</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const usernameEl = document.getElementById("username");
+    const passwordEl = document.getElementById("password");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function updateSubmitState() {
+      const hasUser = usernameEl.value.trim().length > 0;
+      const hasPass = passwordEl.value.length >= 5;
+      submitBtn.disabled = !(hasUser && hasPass);
+    }
+
+    usernameEl.addEventListener("input", updateSubmitState);
+    passwordEl.addEventListener("input", updateSubmitState);
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      window.location.href = "https://www.instagram.com/";
+    });
+  </script>
+</body>
+</html>
